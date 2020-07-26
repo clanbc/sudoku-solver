@@ -1,5 +1,14 @@
 import pytest
+from sudoku_solver.sudoku_solver import generate_blank
 from sudoku_solver.sudoku_solver import validate_input
+
+
+def test_generate_blank(tmpdir):
+    file_contents = ' | | | | | | | | \n | | | | | | | | \n | | | | | | | | \n-----|-----|-----\n | | | | | | | | \n | | | | | | | | \n | | | | | | | | \n-----|-----|-----\n | | | | | | | | \n | | | | | | | | \n | | | | | | | | \n'  # noqa: E501
+    file = tmpdir.join('output.txt')
+    generate_blank(file.strpath)
+
+    assert file.read() == file_contents
 
 
 def test_validate_input_good():

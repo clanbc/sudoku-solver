@@ -18,7 +18,7 @@ lint: _clean
 .PHONY: test
 test: ## Run tests
 	echo "Running tests"
-	$(TEST) pytest --disable-warnings -r sudoku_solver
+	$(TEST) pytest -v --disable-warnings -r sudoku_solver
 
 .PHONY: solver ## Run solver application
 solver: _clean

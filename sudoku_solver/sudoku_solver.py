@@ -35,29 +35,31 @@ def cli(ver):
             metavar='[true]',
             help='generate a blank puzzle')
     if len(sys.argv) == 1:
-        parser.print_help(sys.stderr)
-        sys.exit(1)
+        parser.print_help(sys.stdout)
+        sys.exit(0)
 
     args = parser.parse_args()
 
     return args
 
 
-def generate_blank():
+def generate_blank(file='blank-puzzle.txt'):
     """
     Generate a blank sudoku game and stroe it within
     a text file.
+
+    :param file: default: 'blank-puzzle.txt' file name
+    of blank puzzle to generate.
     """
 
     blank_puzzle = ""
-    f = open("blank-puzzle.txt", "w")
     for x in range(9):
         blank_puzzle += ' | | | | | | | | \n'
         if x == 2 or x == 5:
             blank_puzzle += '-----|-----|-----\n'
 
     logging.debug(blank_puzzle)
-    f = open("blank-puzzle.txt", "w")
+    f = open(file, "w")
     f.write(blank_puzzle)
     f.close()
 
