@@ -1,0 +1,24 @@
+---
+version: '3.0'
+services:
+  solver:
+    build:
+      context: .
+    env_file: .env
+    working_dir: /opt/code
+    volumes:
+      - .:/opt/app:rw
+  flake8:
+    image: alpine/flake8
+    env_file: .env
+    working_dir: /opt/test
+    volumes:
+      - .:/opt/test:rw
+  test:
+    build:
+      context: .
+      dockerfile: test/Dockerfile
+    env_file: .env
+    working_dir: /opt/test
+    volumes:
+      - .:/opt/app:rw
